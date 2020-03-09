@@ -31,6 +31,7 @@ Requirements
 * python (≥ 3.6.7)
 * cgatcore (≥ 0.5.15)
     * ruffus (≥ 2.8.3)
+* seedVicious (≥ 1.3)
 
 Pipeline output
 ===============
@@ -61,8 +62,20 @@ PARAMS = P.get_parameters(
      "pipeline.yml"])
 
 
-@files(None, None)
-def full(infile, outfile):
+@files(None, ["test.out", "test.err"])
+def test(infile, outfiles):
+    '''Run seedViciousTest'''
+    
+    stdout = outfiles[0]
+    stderr = outfiles[1]
+
+    statement = '''seedViciousTest 1>%(stdout)s 2> %(stderr)s'''
+
+    P.run(statement)
+
+
+@follows(test)
+def full():
     pass
 
 
