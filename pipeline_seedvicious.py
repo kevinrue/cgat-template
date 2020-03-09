@@ -62,6 +62,30 @@ PARAMS = P.get_parameters(
      "pipeline.yml"])
 
 
+@follows(mkdir("basic.dir"))
+@files(
+    [PARAMS["input_transcripts"], PARAMS["input_micrornas"]],
+    "basic.dir/output_file.txt")
+def basic(infiles, outfile):
+    '''Doc string.
+    '''
+
+    # Input file of transcript sequences in FASTA ('gz' compressed files allowed)
+    infile_tr = infiles[0]
+
+    # Input file of mature microRNA sequences in FASTA
+    infile_mir = infiles[1]
+
+
+    statement = '''seedVicious
+        -i %(infile_tr)s
+        -m %(infile_mir)s
+        -o %(outfile)s
+    '''
+
+    P.run(statement)
+
+
 @files(None, ["test.out", "test.err"])
 def test(infile, outfiles):
     '''Run seedViciousTest'''
