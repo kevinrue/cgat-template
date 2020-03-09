@@ -1,6 +1,6 @@
 """
 ===========================
-Pipeline template
+Pipeline seedvicious
 ===========================
 
 Overview
@@ -11,12 +11,12 @@ A short description (one paragraph).
 Usage
 =====
 
-	python pipeline_template.py make full -v 5
+	python pipeline_seedvicious.py make full -v 5
 
 Configuration
 =============
 
-	python pipeline_template.py config
+	python pipeline_seedvicious.py config
 
 Input files
 ===========
